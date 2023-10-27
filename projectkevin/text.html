@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Styles for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="scifi-col">
+    <img src="images/11.jpg" class="image" data-author="Author 1" data-summary="Summary 1">
+    <img src="images/12.jpg" class="image" data-author="Author 2" data-summary="Summary 2">
+    <!-- Add more images with data attributes as needed -->
+</div>
+
+<div class="modal" id="myModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2 id="modalAuthor"></h2>
+        <p id="modalSummary"></p>
+    </div>
+</div>
+
+<script>
+    // JavaScript to handle the modal pop-up
+    const images = document.querySelectorAll('.image');
+    const modal = document.getElementById('myModal');
+    const modalAuthor = document.getElementById('modalAuthor');
+    const modalSummary = document.getElementById('modalSummary');
+    const closeModal = document.getElementById('closeModal');
+
+    images.forEach(image => {
+        image.addEventListener('click', function() {
+            modal.style.display = 'block';
+            modalAuthor.textContent = image.getAttribute('data-author');
+            modalSummary.textContent = image.getAttribute('data-summary');
+        });
+    });
+
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+</script>
+
+</body>
+</html>
